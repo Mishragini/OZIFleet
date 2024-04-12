@@ -39,7 +39,7 @@ export const PickupAddress = () => {
     };
 
     return (
-        <div className="bg-white p-1 rounded-lg my-2">
+        <div className="bg-white rounded-lg my-2">
             {renderAddressFields()}
             <button onClick={increaseArraySize} className='p-2 rounded-full bg-blue-700 text-white mt-2'>Add More Pickup Locations</button>
         </div>
