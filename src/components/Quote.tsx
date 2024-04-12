@@ -1,5 +1,5 @@
 "use client"
-import  { useReducer, useEffect } from "react";
+import  { useReducer, useEffect, ChangeEvent } from "react";
 import { InputBox } from "./InputBox";
 import { Select } from "./Select";
 
@@ -47,9 +47,9 @@ export const Quote = ({ type }: { type: "Customer" | "Final" | "Net" }) => {
             <div>{type} Quote</div>
             <div className="flex flex-wrap">
                 <Select label="Select Payment Type" options={PAYMENT_TYPE} />
-                <InputBox label="Enter Price" onChange={(e) => dispatch({ type: 'SET_PRICE', payload: Number(e.target.value) })} />
-                <Select label="GST" options={PERCENTAGE} onChange={(e) => dispatch({ type: 'SET_GST', payload: Number(e.target.value) })} />
-                <Select label="Fuel Levy" options={PERCENTAGE} onChange={(e) => dispatch({ type: 'SET_FUEL_LEVY', payload: Number(e.target.value) })} />
+                <InputBox label="Enter Price" onChange={(e:ChangeEvent<HTMLInputElement>) => dispatch({ type: 'SET_PRICE', payload: Number(e.target.value) })} />
+                <Select label="GST" options={PERCENTAGE} onChange={(e:ChangeEvent<HTMLSelectElement>) => dispatch({ type: 'SET_GST', payload: Number(e.target.value) })} />
+                <Select label="Fuel Levy" options={PERCENTAGE} onChange={(e:ChangeEvent<HTMLSelectElement>) => dispatch({ type: 'SET_FUEL_LEVY', payload: Number(e.target.value) })} />
                 <InputBox label="Total Amount" value={calculateTotalAmount()} />
                 {(type === 'Net') ? <InputBox label="" /> : <InputBox label="Total Profit" />}
             </div>
