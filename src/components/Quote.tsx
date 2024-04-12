@@ -13,7 +13,7 @@ export const Quote=({type}:{type:"Customer"|"Final"|"Net"})=>{
                <Select label="GST" options={PERCENTAGE}/>
                <Select label="Fuel Levy" options={PERCENTAGE}/>
                <InputBox label="TotalAmount"/>
-               {(type==='Net')?<InputBox label=""/>:"TotalProfit"}
+               {(type==='Net')?<InputBox label="TotalProfit"/>:""}
             </div>
         </div>
     )
