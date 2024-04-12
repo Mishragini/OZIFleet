@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Appbar } from "@/components/Appbar";
+import { SideNavbarItem } from "@/components/SideNavbarItem";
+import { AccountsIcon, BookingsIcon, CompliancesIcon, DashboardIcon, DispatchIcon, HelpIcon, OnboardingIcon, OperationsIcon, SettingsIcon, UserManagementIcon } from "@/components/Icons";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="flex m-4">
+          <div className="flex flex-col items-center">
+            <div className="text-3xl font-semibold m-4">OZI<span  className="text-2xl font-normal text-gray-600">FLEET</span></div>
+            <div className="bg-gray-100 p-4 rounded-xl w-46">
+              <SideNavbarItem title="Dashboard" icon={<DashboardIcon/>}/>
+              <SideNavbarItem title="Bookings" icon={<BookingsIcon/>}/>
+              <SideNavbarItem title="Operations" icon={<OperationsIcon/>}/>
+              <SideNavbarItem title="Dispatch" icon={<DispatchIcon/>}/>
+              <SideNavbarItem title="Accounts" icon={<AccountsIcon/>}/>
+              <SideNavbarItem title="Compliances" icon={<CompliancesIcon/>}/>
+              <SideNavbarItem title="User Management" icon={<UserManagementIcon/>}/>
+              <SideNavbarItem title="Onboarding" icon={<OnboardingIcon/>}/>
+              <SideNavbarItem title="Help" icon={<HelpIcon/>}/>
+              <SideNavbarItem title="Settings" icon={<SettingsIcon/>}/>
+            </div>
+          </div>
+          
+          <div className="w-screen ml-4">
+          {children}  
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
