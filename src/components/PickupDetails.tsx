@@ -1,10 +1,10 @@
 import { LOCATIONS } from "./BookingDetails"
 import { InputBox } from "./InputBox"
-import { PickupAddress } from "./PickupAddress"
+import { Address } from "./Address"
 import { Select } from "./Select"
 import { SelectDate } from "./SelectDate"
 
-const LoadType=["Roll",'Pallets','Add']
+export const LoadType=["Roll",'Pallets','Add']
 
 export const PickupDetails=()=>{
     return(
@@ -21,7 +21,7 @@ export const PickupDetails=()=>{
                 <InputBox label="Enter Pickup Site Company Name"/>
                 <InputBox label="Enter Pickup Instructions"/>
             </div>
-            <PickupAddress/>
+            <Address type="Pickup"/>
         </div>
     )
 }

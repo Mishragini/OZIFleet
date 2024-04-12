@@ -1,6 +1,9 @@
 import { BookingDetails } from "./BookingDetails"
 import { BookingInformation } from "./BookingInformation"
+import { DropDetails } from "./DropDetails"
 import { PickupDetails } from "./PickupDetails"
+import { PricingCharges } from "./PricingCharges"
+import { SiteDetails } from "./SiteDetails"
 
 export const CreateBooking=()=>{
     return(
@@ -9,6 +12,12 @@ export const CreateBooking=()=>{
             <BookingInformation/>
             <BookingDetails/>
             <PickupDetails/>
+            <DropDetails/>
+            <SiteDetails/>
+            <PricingCharges/>
+            <div className="flex justify-end"> 
+                <button className="bg-blue-700 px-4 py-2 rounded-full text-white my-2">Submit</button>
+            </div>
         </div>
     )
 }

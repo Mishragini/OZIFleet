@@ -1,5 +1,5 @@
 "use client"
-import  { useReducer } from 'react';
+import { ChangeEventHandler, useReducer } from 'react';
 
 interface SelectAction {
     type: 'SET_VALUE';
@@ -15,9 +15,10 @@ const selectReducer = (state: string, action: SelectAction) => {
     }
 };
 
-export const Select = ({ options, label }: {
+export const Select = ({ options, label,onChange }: {
     label: string,
-    options: string[]
+    options: string[],
+    onChange?:ChangeEventHandler<HTMLSelectElement> | undefined
 }) => {
     const [value, dispatch] = useReducer(selectReducer, '');
 
@@ -31,8 +32,9 @@ export const Select = ({ options, label }: {
             <select 
                 value={value} 
                 onChange={handleChange} 
-                className="bg-transparent text-gray-900 rounded-lg w-full p-2"
+                className="bg-transparent text-gray-700 rounded-lg w-full p-2"
             >
+                <option value="" disabled hidden className='text-gray-700'>Select</option> 
                 {options.map(option => <option key={option} value={option}>{option}</option>)}
             </select>
         </div>

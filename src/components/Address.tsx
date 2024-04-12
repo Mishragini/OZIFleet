@@ -8,7 +8,7 @@ const STATES = ["Victoria", "Australian Capital Territory", "New South Wales", "
 
 
 
-export const PickupAddress = () => {
+export const Address = ({type}:{type:'Pickup'|'Drop'}) => {
     const{state,increaseArraySize,decreaseArraySize}=useReducerArray();
     if(state===1) {
         const AddedFeild=false;
@@ -21,7 +21,7 @@ export const PickupAddress = () => {
             addressFields.push(
                 <div key={i}>
                     <div className='flex justify-between'>
-                    <div className=" mb-4">Pickup Address{(i==0)?"":i}</div>
+                    <div className=" mb-4">{type} Address{(i==0)?"":i}</div>
                     {(i>0)?<button onClick={decreaseArraySize} className='text-gray-500'>X</button>:""}
                     </div>
                     <div className="flex flex-wrap">
@@ -41,7 +41,7 @@ export const PickupAddress = () => {
     return (
         <div className="bg-white rounded-lg my-2">
             {renderAddressFields()}
-            <button onClick={increaseArraySize} className='p-2 rounded-full bg-blue-700 text-white mt-2'>Add More Pickup Locations</button>
+            <button onClick={increaseArraySize} className='p-2 rounded-full bg-blue-700 text-white mt-2'>Add More {type} Locations</button>
         </div>
     );
 };
