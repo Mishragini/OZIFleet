@@ -1,5 +1,5 @@
 "use client"
-import { ChangeEventHandler, useReducer } from 'react';
+import { useReducer } from 'react';
 
 interface SelectAction {
     type: 'SET_VALUE';
@@ -15,10 +15,9 @@ const selectReducer = (state: string, action: SelectAction) => {
     }
 };
 
-export const Select = ({ options, label,onChange }: {
+export const Select = ({ options, label }: {
     label: string,
-    options: string[],
-    onChange?:ChangeEventHandler<HTMLSelectElement> | undefined
+    options: string[]
 }) => {
     const [value, dispatch] = useReducer(selectReducer, '');
 
