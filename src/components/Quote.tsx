@@ -75,7 +75,7 @@ export const Quote = ({ type }:{ type: "Customer" | "Final" | "Net" }) => {
                 <InputBox label="Enter Price" value={state.price} onChange={handleInputChange} />
                 <Select label="GST" options={PERCENTAGE} onSelectChange={(value) => handleSelectChange(value, "GST")} />
                 <Select label="Fuel Levy" options={PERCENTAGE} onSelectChange={(value) => handleSelectChange(value, "Fuel Levy")} />
-                <InputBox label="Total Amount" value={state.totalAmount} disabled />
+                <InputBox label="Total Amount" value={state.totalAmount} />
                 {type === "Net" && <InputBox label="Total Profit" />}
             </div>
         </div>

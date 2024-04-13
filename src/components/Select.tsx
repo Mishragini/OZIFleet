@@ -1,19 +1,7 @@
 "use client"
-import { useReducer } from 'react';
 
-interface SelectAction {
-    type: 'SET_VALUE';
-    payload: string;
-}
+import { useSetReducer } from "@/hooks/useSetReducer";
 
-const selectReducer = (state: string, action: SelectAction) => {
-    switch (action.type) {
-        case 'SET_VALUE':
-            return action.payload;
-        default:
-            return state;
-    }
-};
 
 interface SelectProps {
     label: string;
@@ -22,7 +10,7 @@ interface SelectProps {
 }
 
 export const Select = ({ options, label, onSelectChange }:SelectProps) => {
-    const [value, dispatch] = useReducer(selectReducer, '');
+    const [value, dispatch] = useSetReducer('');
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedValue = e.target.value;

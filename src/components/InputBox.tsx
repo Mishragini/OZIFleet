@@ -1,29 +1,17 @@
 "use client"
-import React, { useReducer } from 'react';
+import { useSetReducer } from '@/hooks/useSetReducer';
+import  { useReducer } from 'react';
 
-interface InputAction {
-    type: 'SET_VALUE';
-    payload: string;
-}
-
-const inputReducer = (state: string, action: InputAction) => {
-    switch (action.type) {
-        case 'SET_VALUE':
-            return action.payload;
-        default:
-            return state;
-    }
-};
 
 interface InputBoxProps {
     label: string;
     value?: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    disabled?: boolean; 
+    
 }
 
-export const InputBox = ({ label, value: propValue, onChange, disabled }:InputBoxProps) => {
-    const [value, dispatch] = useReducer(inputReducer, propValue || '');
+export const InputBox = ({ label, value: propValue, onChange }:InputBoxProps) => {
+    const [value, dispatch] = useSetReducer(propValue || '');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = e.target.value;
@@ -40,7 +28,6 @@ export const InputBox = ({ label, value: propValue, onChange, disabled }:InputBo
                 type="text" 
                 value={value} 
                 onChange={handleChange} 
-                disabled={disabled} 
                 className="focus:outline-none bg-transparent"
             />
         </div>
