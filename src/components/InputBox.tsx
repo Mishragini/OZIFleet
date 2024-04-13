@@ -1,5 +1,5 @@
 "use client"
-import { useReducer } from 'react';
+import React, { useReducer } from 'react';
 
 interface InputAction {
     type: 'SET_VALUE';
@@ -15,14 +15,22 @@ const inputReducer = (state: string, action: InputAction) => {
     }
 };
 
-export const InputBox = ({ label, value: propValue }: {
-    label: string,
-    value?: string
-}) => {
+interface InputBoxProps {
+    label: string;
+    value?: string;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean; 
+}
+
+export const InputBox = ({ label, value: propValue, onChange, disabled }:InputBoxProps) => {
     const [value, dispatch] = useReducer(inputReducer, propValue || '');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch({ type: 'SET_VALUE', payload: e.target.value });
+        const inputValue = e.target.value;
+        dispatch({ type: 'SET_VALUE', payload: inputValue });
+        if (onChange) {
+            onChange(e);
+        }
     };
 
     return (
@@ -32,6 +40,7 @@ export const InputBox = ({ label, value: propValue }: {
                 type="text" 
                 value={value} 
                 onChange={handleChange} 
+                disabled={disabled} 
                 className="focus:outline-none bg-transparent"
             />
         </div>

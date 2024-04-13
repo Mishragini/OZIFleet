@@ -15,14 +15,21 @@ const selectReducer = (state: string, action: SelectAction) => {
     }
 };
 
-export const Select = ({ options, label }: {
-    label: string,
-    options: string[]
-}) => {
+interface SelectProps {
+    label: string;
+    options: string[];
+    onSelectChange?: (value: string) => void;
+}
+
+export const Select = ({ options, label, onSelectChange }:SelectProps) => {
     const [value, dispatch] = useReducer(selectReducer, '');
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        dispatch({ type: 'SET_VALUE', payload: e.target.value });
+        const selectedValue = e.target.value;
+        dispatch({ type: 'SET_VALUE', payload: selectedValue });
+        if (onSelectChange) {
+            onSelectChange(selectedValue);
+        }
     };
     
     return (
