@@ -2,6 +2,7 @@
 import { useReducer } from "react";
 import { InputBox } from "./InputBox";
 import { Select } from "./Select";
+import { TotolAmountInput } from "./TotalAmountInput";
 
 const PAYMENT_TYPE = ["Credit Card", "NetBanking"];
 const PERCENTAGE = ["5", "12", "18", "28"];
@@ -33,15 +34,14 @@ const reducer = (state: State, action: Action): State => {
                 const gstAmount = parseFloat(state.gst) / 100 * totalPrice;
                 const fuelLevyAmount = parseFloat(state.fuelLevy) / 100 * totalPrice;
                 const total = totalPrice + gstAmount + fuelLevyAmount;
-                console.log(total);
                 return { ...state, totalAmount: total.toFixed(2).toString() };
+
             }
             return state;
         default:
             return state;
     }
 };
-
 export const Quote = ({ type }:{ type: "Customer" | "Final" | "Net" }) => {
     const [state, dispatch] = useReducer(reducer, {
         gst: "",
@@ -49,7 +49,7 @@ export const Quote = ({ type }:{ type: "Customer" | "Final" | "Net" }) => {
         price: "",
         totalAmount: "",
     });
-
+    
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
@@ -75,7 +75,7 @@ export const Quote = ({ type }:{ type: "Customer" | "Final" | "Net" }) => {
                 <InputBox label="Enter Price" value={state.price} onChange={handleInputChange} />
                 <Select label="GST" options={PERCENTAGE} onSelectChange={(value) => handleSelectChange(value, "GST")} />
                 <Select label="Fuel Levy" options={PERCENTAGE} onSelectChange={(value) => handleSelectChange(value, "Fuel Levy")} />
-                <InputBox label="Total Amount" value={state.totalAmount} />
+                <TotolAmountInput value={state.totalAmount} />
                 {type === "Net" && <InputBox label="Total Profit" />}
             </div>
         </div>
